@@ -82,6 +82,44 @@ contact.show_contact_info
 person.extend(Greetable)
 person.greet
 
+### More mixin example
+# Module Mixins for Multiple Inheritance and Polymorphism
+module Swim
+  def swim
+    puts "#{@name} is swimming"
+  end
+end
+
+module Climb
+  def climb
+    puts "#{@name} is climbing"
+  end
+end
+
+class Animal
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+class Dog < Animal
+  include Swim
+end
+
+class Cat < Animal
+  include Climb
+end
+
+# Using Mixins for Multiple Inheritance and Polymorphism
+dog = Dog.new("Buddy")
+cat = Cat.new("Whiskers")
+
+dog.swim
+cat.climb
+
+
 ########### Static Variables (Class Variables)
 class MathUtility
   @@pi = 3.14159
