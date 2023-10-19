@@ -1,128 +1,5 @@
-class User
-    def initialize(name, email, id)
-        @name = name
-        @email = email
-        @id = id
-    end
 
-    def name
-        @name
-    end
-
-    def email
-        @email
-    end
-
-    def id
-        @id
-    end
-
-end
-
-
-class Admin < User
-    def initialize(name, email, id, password)
-        super(name, email, id)
-        @password = password
-    end
-
-    def password
-        @password
-    end
-end
-
-class Customers < User
-    def initialize(name, email, id, password)
-        super(name, email, id)
-        @password = password
-    end
-
-    def password
-        @password
-    end
-end
-
-customer1 = Customers.new("customer1", "customer1@customer1.com", 1, "customer1")
-puts customer1
-
-rootAdmin = Admin.new("root", "root@root.com", 1, "root")
-puts rootAdmin
-
-user1 = User.new("user", "user@user.com", 1)
-puts user1
-
-
-########## Example of composition over inheritance
-
-class User
-    def initialize(name, email, id)
-        @name = name
-        @email = email
-        @id = id
-    end
-
-    def name
-        @name
-    end
-
-    def email
-        @email
-    end 
-
-    def id
-        @id
-    end
-
-    def get_info
-        puts "Name: #{@name}"
-        puts "Email: #{@email}"
-        puts "ID: #{@id}"
-    end
-
-end
-
-class Admin
-    def initialize(name, email, id)
-        @user = User.new(name, email, id)
-    end
-
-    def basic_info
-        @user.get_info
-    end
-end
-
-myadmin = Admin.new("admin", "admin@admin.com", 1)
-puts myadmin
-myadmin.basic_info()
-
-###### "super" keyword
-
-class Parent
-    def greet(name)
-      "Hello, #{@name}!"
-    end
-  end
-  
-  class Child < Parent
-    def greet(name)
-      super # equivalent to super(name)
-    end
-  end
-  
-  class Grandchild < Parent
-    def greet(name)
-      super(name) # equivalent to super without any arguments
-    end
-  end
-  
-  child = Child.new
-  puts child.greet("John") # => "Hello, John!"
-  
-  grandchild = Grandchild.new
-  puts grandchild.greet("John") # => ArgumentError: wrong number of arguments (given 0, expected 1)
-  
-
-  # Class with Attributes, Accessors, and Methods
+########### Class with Attributes, Accessors, and Methods
 class Person
   attr_accessor :name, :age  # Read and write access to name and age
   attr_reader :ssn  # Read-only access to SSN
@@ -144,7 +21,7 @@ class Person
   end
 end
 
-# Inheritance and Method Overriding
+########### Inheritance and Method Overriding
 class Student < Person
   attr_reader :student_id
 
@@ -159,7 +36,7 @@ class Student < Person
   end
 end
 
-# Composition and Aggregation
+########### Composition and Aggregation
 class Address
   attr_reader :street, :city
 
@@ -184,7 +61,7 @@ class Contact
   end
 end
 
-# Modules and Mixins
+########### Modules and Mixins
 module Greetable
   def greet
     puts "Hello, I'm #{@name}!"
@@ -205,7 +82,7 @@ contact.show_contact_info
 person.extend(Greetable)
 person.greet
 
-# Static Variables (Class Variables)
+########### Static Variables (Class Variables)
 class MathUtility
   @@pi = 3.14159
 
@@ -216,7 +93,7 @@ end
 
 puts "Circle Area: #{MathUtility.circle_area(5)}"
 
-# Singleton Pattern
+########### Singleton Pattern
 require 'singleton'
 
 class SingletonExample
@@ -234,7 +111,7 @@ first_instance.data = "Updated Data"
 
 puts "Is the data the same between instances? #{first_instance.data == second_instance.data}"
 
-# Using Enumerable Module
+########### Using Enumerable Module
 class ShoppingCart
   include Enumerable
   attr_accessor :items
@@ -254,14 +131,14 @@ cart.items = ["Item1", "Item2", "Item3"]
 puts "Items in the shopping cart:"
 cart.each { |item| puts item }
 
-# Using Procs and Lambdas
+########### Using Procs and Lambdas
 add = ->(x, y) { x + y }
 multiply = lambda { |x, y| x * y }
 
 puts "Addition: #{add.call(3, 4)}"
 puts "Multiplication: #{multiply.call(5, 6)}"
 
-# Implementing a Factory Pattern
+########### Implementing a Factory Pattern
 class Shape
   def area
     raise "Abstract method not implemented"
